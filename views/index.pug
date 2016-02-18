@@ -1,0 +1,23 @@
+html
+  head
+    title Who is my representative?
+  body
+    h1.main-title Hello there
+    form(method='get' action='/')
+      select(name='type')
+        option(value=zip) Zip
+        option(value=name) Name
+        option(value=state) State
+      input(type='text' name='search')
+      button Submit
+    
+    
+    input(type='text' name='name')
+    p= foo
+    p foo is #{foo}
+    if foo
+      p Found foo!
+    if arr && arr.length
+      ul
+        for i in arr
+          li= i
