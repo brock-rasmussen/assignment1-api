@@ -2,9 +2,7 @@
 
 var path = require('path');
 var express = require('express');
-
 var reps = require('./lib/reps');
-
 var app = express();
 var PORT = process.env.PORT || 8000;
 
@@ -47,7 +45,8 @@ app.get('/sens/by-state/:state', function (req, res) {
 
 app.get('/', function (req, res, next) {
   var method;
-  switch (req.query.type) {
+  
+  switch (req.query.method) {
   case 'zip':
     method = reps.allByZip;
     break;
@@ -57,16 +56,18 @@ app.get('/', function (req, res, next) {
   case 'state':
     method = reps.repsByState;
     break;
+  default:
+    method = function (param, cb) { cb(null, []); };
+    break;
   }
       
-  if (method) {
-    method(req.query.search, function (err, results) {
-      if (err) { return next(err); }
-      res.render('index', {
-        reps: results
-      });
+  method(req.query.search, function (err, results) {
+    if (err) { return next(err); }
+    res.render('index', {
+      reps: results,
+      query: req.query
     });
-  }
+  });
 });
 
 app.listen(PORT, function () {

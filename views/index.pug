@@ -4,18 +4,22 @@ html
   body
     h1 Who is my representative?
     form(method='get' action='/')
+      select(name='method')
+        option(value='zip' selected=(query.method === 'zip')) Zip
+        option(value='name' selected=(query.method === 'name')) Name
+        option(value='state' selected=(query.method === 'state')) State
       select(name='type')
-        option(label='Zip' value='zip')
-        option(label='State' value='state')
-        option(label='Name' value='name')
-      input(type='text' name='search')
+        option(value='reps') Representatives
+        option(value='sens') Senators
+      input(type='text' name='search' value=query.search)
       button Submit
     
-    p= foo
-    p foo is #{foo}
-    if foo
-      p Found foo!
-    if arr && arr.length
-      ul
-        for i in arr
-          li= i
+    ul
+      if reps
+        for rep in reps
+          li
+            p= rep.name
+            p= rep.state
+            p= rep.party
+            p= rep.office
+            p= rep.phone
