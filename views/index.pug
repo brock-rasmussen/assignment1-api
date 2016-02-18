@@ -2,17 +2,15 @@ html
   head
     title Who is my representative?
   body
-    h1.main-title Hello there
+    h1 Who is my representative?
     form(method='get' action='/')
       select(name='type')
-        option(value=zip) Zip
-        option(value=name) Name
-        option(value=state) State
+        option(label='Zip' value='zip')
+        option(label='State' value='state')
+        option(label='Name' value='name')
       input(type='text' name='search')
       button Submit
     
-    
-    input(type='text' name='name')
     p= foo
     p foo is #{foo}
     if foo

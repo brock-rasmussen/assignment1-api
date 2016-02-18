@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "express": "^4.13.4",
+    "pug": "^0.1.0",
     "superagent": "^1.7.2"
   }
 }
